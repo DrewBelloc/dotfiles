@@ -221,25 +221,25 @@ awful.screen.connect_for_each_screen(function(s)
         buttons = tasklist_buttons,
     }
     
-    s.tagbox = wibox({ position = "top", screen = 1, visible = true, ontop=true, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1046, y = 2, width = 172, height = 20 })
+    s.tagbox = wibox({ position = "top", screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1046, y = 2, width = 172, height = 20 })
     s.tagbox:setup {
         layout = wibox.layout.align.horizontal,
         s.mytaglist,
     }
 
-    s.tagbox2 = wibox({ position = "top", screen = 2, visible = true, ontop=true, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 874, y = 2, width = 172, height = 20 })
+    s.tagbox2 = wibox({ position = "top", screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 874, y = 2, width = 172, height = 20 })
     s.tagbox2:setup {
         layout = wibox.layout.align.horizontal,
         s.mytaglist2,
     }
 
-    s.appbox = wibox({ screen = s, visible = true, ontop=true, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1915, y = 2, width = 20, height = 20 })
+    s.appbox = wibox({ screen = s, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1915, y = 2, width = 20, height = 20 })
     s.appbox:setup {
         layout = wibox.layout.align.horizontal,
 	s.mylayoutbox,
     }
 
-    s.lastbox = wibox({ screen = 1, visible = true, ontop=true, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 185, y = 2, width = 170, height = 20 })
+    s.lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 185, y = 2, width = 170, height = 20 })
     s.lastbox:setup {
         layout = wibox.layout.align.horizontal,
 	mykeyboardlayout,
@@ -247,7 +247,7 @@ awful.screen.connect_for_each_screen(function(s)
 	mytextclock,
     }
 
-    s.lastbox2 = wibox({ screen = 2, visible = true, ontop=true, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 1790, y = 2, width = 120, height = 20 })
+    s.lastbox2 = wibox({ screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 1790, y = 2, width = 120, height = 20 })
     s.lastbox2:setup {
         layout = wibox.layout.align.horizontal,
 	mykeyboardlayout,
