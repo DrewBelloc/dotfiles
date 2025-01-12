@@ -1,0 +1,5 @@
+configuration {
+	mod1: "drun,run,ssh,window";
+}
+
+@theme "catppuccin"
