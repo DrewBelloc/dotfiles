@@ -13,6 +13,7 @@ local theme = {}
 
 theme.font          = "sans 8"
 
+--[[
 theme.bg_normal     = "#222222"
 theme.bg_focus      = "#535d6c"
 theme.bg_urgent     = "#ff0000"
@@ -29,6 +30,28 @@ theme.border_width  = dpi(1)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
 theme.border_marked = "#91231c"
+]]
+theme.bg_normal     = "#1e1e2e"
+theme.bg_focus      = "#cba6f7"
+theme.bg_urgent     = "#eba0ac"
+theme.bg_minimize   = "#181825"
+theme.bg_systray    = theme.bg_normal
+
+theme.fg_normal     = "#bac3de"
+theme.fg_focus      = "#11111b"
+theme.fg_urgent     = "#cdd6f4"
+theme.fg_minimize   = "#bac3de"
+
+theme.useless_gap   = dpi(0)
+theme.border_width  = dpi(3)
+theme.border_normal = "#4c4f69"
+theme.border_focus  = "#cba6f7"
+theme.border_marked = "#f38ba8"
+
+theme.taglist_bg_focus = "#1e1e2e"
+theme.taglist_fg_focus = "#cba6f7"
+theme.taglist_fg_empty = "#585b70"
+theme.taglist_fg_occupied = "#b4befe"
 
 -- There are other variable sets
 -- overriding the default one when
