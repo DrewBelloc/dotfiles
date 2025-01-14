@@ -13,3 +13,7 @@ end
 
 function fish_greeting
 end
+
+function fuck
+    eval command sudo $history[1]
+end

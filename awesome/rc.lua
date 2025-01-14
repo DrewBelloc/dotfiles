@@ -182,7 +182,10 @@ end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
+local screenNumber = 0
+
 awful.screen.connect_for_each_screen(function(s)
+    screenNumber = screenNumber + 1
     -- Wallpaper
     set_wallpaper(s)
 
@@ -199,62 +202,85 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
-    -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist {
-        screen  = 1,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons,
-
-    }
-
-    s.mytaglist2 = awful.widget.taglist {
-        screen  = s,
-        filter  = awful.widget.taglist.filter.all,
-        buttons = taglist_buttons,
-
-    }
 
     -- Create a tasklist widget
     s.mytasklist = awful.widget.tasklist {
-        screen  = s,
+        screen  = 2,
         filter  = awful.widget.tasklist.filter.currenttags,
         buttons = tasklist_buttons,
     }
-    
-    s.tagbox = wibox({ position = "top", screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1046, y = 2, width = 172, height = 20 })
-    s.tagbox:setup {
-        layout = wibox.layout.align.horizontal,
-        s.mytaglist,
-    }
+        
+    if screenNumber == 1 then
+        -- Create a taglist widget
+        local mytaglist = awful.widget.taglist {
+            screen  = 1,
+            filter  = awful.widget.taglist.filter.all,
+            buttons = taglist_buttons,
 
-    s.tagbox2 = wibox({ position = "top", screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 874, y = 2, width = 172, height = 20 })
-    s.tagbox2:setup {
-        layout = wibox.layout.align.horizontal,
-        s.mytaglist2,
-    }
+        }
 
-    s.appbox = wibox({ screen = s, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1915, y = 2, width = 20, height = 20 })
-    s.appbox:setup {
-        layout = wibox.layout.align.horizontal,
-	s.mylayoutbox,
-    }
+        local tagbox = wibox({ position = "top", screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1046, y = 2, width = 172, height = 20 })
+        tagbox:setup {
+            layout = wibox.layout.align.horizontal,
+            mytaglist,
+        }
 
-    s.lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 185, y = 2, width = 170, height = 20 })
-    s.lastbox:setup {
-        layout = wibox.layout.align.horizontal,
-	mykeyboardlayout,
-	wibox.widget.systray(),
-	mytextclock,
-    }
+         local appbox = wibox({ screen = s, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1915, y = 2, width = 20, height = 20 })
+        appbox:setup {
+            layout = wibox.layout.align.horizontal,
+            s.mylayoutbox,
+        }
 
-    s.lastbox2 = wibox({ screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 1790, y = 2, width = 120, height = 20 })
-    s.lastbox2:setup {
-        layout = wibox.layout.align.horizontal,
-	mykeyboardlayout,
-	mytextclock,
-    }
+         local lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 265, y = 2, width = 250, height = 20 })
+        lastbox:setup {
+            layout = wibox.layout.align.horizontal,
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    mykeyboardlayout,
+                    wibox.widget.systray(),
+                },
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                {
+                    layout = wibox.layout.fixed.horizontal,
+                    mytextclock,
+                },
+        }
+        local toppadding = awful.wibar({ position = "top", screen = 1, opacity = 0, border_width = 5 })
 
-    s.toppadding = awful.wibar({ position = "top", screen = s, opacity = 0, border_width = 5 })
+    elseif screenNumber == 2 then
+        -- Create a taglist widget
+        local mytaglist = awful.widget.taglist {
+            screen  = 2,
+            filter  = awful.widget.taglist.filter.all,
+            buttons = taglist_buttons,
+
+        }
+
+        local appbox = wibox({ screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 1915, y = 2, width = 20, height = 20 })
+        appbox:setup {
+            layout = wibox.layout.align.horizontal,
+            s.mylayoutbox,
+        }
+
+        local tagbox = wibox({ position = "top", screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width + 874, y = 2, width = 172, height = 20 })
+        tagbox:setup {
+            layout = wibox.layout.align.horizontal,
+            mytaglist,
+        }
+
+        local toppadding = awful.wibar({ position = "top", screen = 2, opacity = 0, border_width = 5 })
+
+
+        local lastbox = wibox({ screen = 2, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width * 2 - 140, y = 2, width = 125, height = 20 })
+        lastbox:setup {
+            layout = wibox.layout.align.horizontal,
+            mytextclock,
+            mykeyboardlayout,
+        }
+
+    end
 
     --[[
     -- Create the wibox
@@ -666,8 +692,13 @@ awful.tag.attached_connect_signal(s, "property::selected", function(tag)
     update_tag(tag)
 end)
 
-
 beautiful.useless_gap = 5
+
+-- Notifications
+beautiful.notification_opacity = 0.7
+beautiful.notification_width = 350
+beautiful.notification_height = 150
+beautiful.notification_shape = gears.shape.rounded_rect
 
 -- Auto Start
 
