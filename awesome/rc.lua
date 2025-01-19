@@ -71,13 +71,13 @@ awful.layout.layouts = {
     -- awful.layout.suit.tile.left,
     -- awful.layout.suit.tile.bottom,
     -- awful.layout.suit.tile.top,
-    -- awful.layout.suit.fair,
+    awful.layout.suit.fair,
     -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
+    awful.layout.suit.spiral,
     -- awful.layout.suit.spiral.dwindle,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
+    awful.layout.suit.corner.nw,
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
@@ -231,13 +231,12 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         }
 
-         local lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 265, y = 2, width = 250, height = 20 })
+         local lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 140, y = 2, width = 120, height = 20 })
         lastbox:setup {
             layout = wibox.layout.align.horizontal,
                 {
                     layout = wibox.layout.fixed.horizontal,
                     mykeyboardlayout,
-                    wibox.widget.systray(),
                 },
                 {
                     layout = wibox.layout.fixed.horizontal,
@@ -340,13 +339,13 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
 
-    awful.key({ modkey,           }, "j",
+    awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx( 1)
         end,
         {description = "focus next by index", group = "client"}
     ),
-    awful.key({ modkey,           }, "k",
+    awful.key({ modkey,           }, "j",
         function ()
             awful.client.focus.byidx(-1)
         end,
@@ -377,6 +376,8 @@ globalkeys = gears.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
+              {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "e", function () awful.spawn("emacsclient -c") end,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Control" }, "r", awesome.restart,
               {description = "reload awesome", group = "awesome"}),
