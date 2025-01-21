@@ -231,7 +231,7 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         }
 
-         local lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 140, y = 2, width = 120, height = 20 })
+         local lastbox = wibox({ screen = 1, visible = true, ontop=false, border_width=5, opacity = 0.7, x = awful.screen.focused().geometry.width - 140, y = 2, width = 125, height = 20 })
         lastbox:setup {
             layout = wibox.layout.align.horizontal,
                 {
