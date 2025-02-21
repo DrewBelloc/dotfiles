@@ -4,7 +4,7 @@ if status is-interactive
 end
 
 function fish_prompt
-    printf '%s%s%s%s%s%s   %s %s%s%s ' (set_color -b red) (set_color black) " Belloc " (set_color red) (set_color -b cyan) (set_color black) (prompt_pwd) (set_color -b normal) (set_color cyan) (set_color normal)
+    printf '%s%s   %s%s%s  %s %s%s%s ' (set_color -b red) (set_color black) (set_color red) (set_color -b cyan) (set_color black) (prompt_pwd) (set_color -b normal) (set_color cyan) (set_color normal)
 end
 
 function fish_right_prompt -d "Write out the right prompt"
