@@ -17,3 +17,6 @@ end
 function fuck
     eval command sudo $history[1]
 end
+
+alias yeet="sudo apt purge"
+alias up="sudo apt update && sudo apt upgrade -y && flatpak update -y"
