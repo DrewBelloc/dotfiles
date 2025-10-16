@@ -5,8 +5,7 @@
 }
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.5);
-    border-bottom: 3px solid rgba(100, 114, 125, 0.5);
+    background-color: rgba(43, 48, 59, 0);
     color: #ffffff;
     transition-property: background-color;
     transition-duration: .5s;
@@ -44,32 +43,29 @@ button {
 
 /* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
-    background: inherit;
-    box-shadow: inset 0 -3px #ffffff;
+    color: #cba6f7;
 }
 
 /* you can set a style on hover for any module like this */
 #pulseaudio:hover {
-    background-color: #a37800;
+    border-color: #74c7ec;
 }
 
 #workspaces button {
     padding: 0 5px;
-    background-color: transparent;
-    color: #ffffff;
+    color: #cdd6f4;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    color: #cba6f7;
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-    box-shadow: inset 0 -3px #ffffff;
+    color: #cba6f7;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    color: #eb4d4b;
 }
 
 #mode {
@@ -100,6 +96,10 @@ button:hover {
 
 #window,
 #workspaces {
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #b4befe;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
     margin: 0 4px;
 }
 
@@ -114,27 +114,33 @@ button:hover {
 }
 
 #clock {
-    color: #ffffff;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #b4befe;
+    border-radius: 15px 15px 15px 15px;
+    color: #cdd6f4;
 }
 
 #battery {
-    color: #ffffff;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #b4befe;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #battery.charging, #battery.plugged {
-    color: #22ff22;
+    color: #a6e3a1;
+    border-color: #a6e3a1;
 }
 
 @keyframes blink {
     to {
-        background-color: #ffffff;
-        color: #000000;
+        border-color: #f38ba8;
     }
 }
 
 /* Using steps() instead of linear as a timing function to limit cpu usage */
 #battery.critical:not(.charging) {
-    color: #ff2222;
+    border-color: #eba0ac;
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: steps(12);
@@ -143,19 +149,25 @@ button:hover {
 }
 
 #power-profiles-daemon {
-    padding-right: 15px;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #b4befe;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #power-profiles-daemon.performance {
-    color: #ff0000;
+    color: #f38ba8;
+    border-color: #f38ba8;
 }
 
 #power-profiles-daemon.balanced {
-    color: #ffffff;
+    color: #cdd6f4;
+    border-color: #b4befe;
 }
 
 #power-profiles-daemon.power-saver {
-    color: #00ff00;
+    color: #a6e3a1;
+    border-color: #a6e3a1;
 }
 
 label:focus {
@@ -176,23 +188,33 @@ label:focus {
 }
 
 #backlight {
-    color: #ffffff;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #94e2d5;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #network {
-    color: #ffffff;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #89b4fa;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #network.disconnected {
-    background-color: #f53c3c;
+    border-color: #f38ba8;
 }
 
 #pulseaudio {
-    color: #ffffff;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #74c7ec;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #pulseaudio.muted {
-    color: #ffffff;
+    border-color: #eba0ac;
+    color: #eba0ac;
 }
 
 #wireplumber {
@@ -226,7 +248,10 @@ label:focus {
 }
 
 #tray {
-    background-color: #2980b9;
+    background-color: rgba(30,30,46,0.5);
+    border: 2px solid #b4befe;
+    color: #cdd6f4;
+    border-radius: 15px 15px 15px 15px;
 }
 
 #tray > .passive {
@@ -248,21 +273,24 @@ label:focus {
 }
 
 #mpd {
-    background-color: #cba6f7;
-    border-radius: 0px 15px 15px 0px;
-    color: #1e1e2e;
+    border: 2px solid transparent;
+    background-image: linear-gradient(to right, #89b4fa, #1e1e2e, #1e1e2e);
+    border-radius: 15px 15px 15px 15px;
+    color: #cdd6f4;
 }
 
 #mpd.disconnected {
-    background-color: #f38ba8;
+    background-color: #1e1e2e;
+    background-image: linear-gradient(to right, #1e1e2e, #f38ba8, #1e1e2e);
 }
 
 #mpd.stopped {
-    background-color: #b4befe;
+    background-color: #1e1e2e;
+    background-image: linear-gradient(to right, #1e1e2e, #1e1e2e, #1e1e2e);
 }
 
 #mpd.paused {
-    background-color: #74c7ec;
+    background-image: linear-gradient(to right, #585b70, #1e1e2e, #1e1e2e);
 }
 
 #language {
